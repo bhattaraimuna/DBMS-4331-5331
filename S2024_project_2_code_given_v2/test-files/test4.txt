@@ -1,0 +1,33 @@
+// Interconnected transactions without deadlock
+LogFile ../test-files/test4.log
+BeginTx 1 W
+Read    1 2
+Read    1 3
+Write   1 4
+Commit  1
+BeginTx 2 W
+Read    2 1
+Read    2 4
+Write   2 5
+Commit  2
+BeginTx 3 W
+Read    3 1
+Write   3 6
+Commit  3
+BeginTx 4 W
+Read    4 2
+Write   4 7
+Commit  4
+BeginTx 5 W
+Read    5 2
+Read    5 3
+Read    5 4
+Write   5 8
+Commit  5
+BeginTx 6 W
+Read    6 1
+Read    6 3
+Read    6 5
+Write   6 9
+Commit  6
+End All
